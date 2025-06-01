@@ -66,7 +66,7 @@ class _MainScreenState extends State<MainScreen> {
           ), // Nuevo ítem para Estado Civil
           BottomNavigationBarItem(
             icon: Icon(Icons.location_on),
-            label: 'Direccion',
+            label: 'Dirección',
           ), // Nuevo ítem para Direccion
           BottomNavigationBarItem(icon: Icon(Icons.info), label: 'Acerca de'),
         ],
