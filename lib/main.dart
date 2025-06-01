@@ -157,7 +157,7 @@ class Persona {
   final String apellidos;
   final String elsexo;
   final String elestadocivil;
-  final String fechanacimiento; // Asumiendo que viene como String
+  final String fechanacimiento; // Asumiendo que viene como string
 
   Persona({
     required this.idpersona,
