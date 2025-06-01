@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'SICA App', // Título de la aplicación
+      title: 'Microsoft6a App', // Título de la aplicación
       theme: ThemeData(primarySwatch: Colors.blue),
       home: MainScreen(),
       debugShowCheckedModeBanner: false,
@@ -51,7 +51,9 @@ class _MainScreenState extends State<MainScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("SICA - Registro")), // Título de la AppBar
+      appBar: AppBar(
+        title: Text("MICROSOFT6A - Registro"),
+      ), // Título de la AppBar
       body: _pages[_selectedIndex], // Muestra la página seleccionada
       bottomNavigationBar: BottomNavigationBar(
         items: const [
@@ -73,9 +75,8 @@ class _MainScreenState extends State<MainScreen> {
         onTap: _onItemTapped, // Callback cuando se toca un ítem
         selectedItemColor: Colors.blue, // Color del ítem seleccionado
         unselectedItemColor: Colors.grey, // Color de los ítems no seleccionados
-        type:
-            BottomNavigationBarType
-                .fixed, // Asegura que todos los items se muestren
+        type: BottomNavigationBarType
+            .fixed, // Asegura que todos los items se muestren
       ),
     );
   }
@@ -208,7 +209,7 @@ class _SexoPageState extends State<SexoPage> {
     try {
       final response = await http.get(
         Uri.parse(
-          'https://educaysoft.org/whatsapp6a/app/controllers/SexoController.php?action=api',
+          'https://educaysoft.org/microsoft6a/app/controllers/SexoController.php?action=api',
         ),
       );
 
@@ -236,14 +237,13 @@ class _SexoPageState extends State<SexoPage> {
   void _filterSearch(String query) {
     setState(() {
       _searchText = query;
-      _filteredSexoList =
-          _sexoList
-              .where(
-                (item) =>
-                    item.nombre.toLowerCase().contains(query.toLowerCase()) ||
-                    item.idsexo.contains(query),
-              )
-              .toList();
+      _filteredSexoList = _sexoList
+          .where(
+            (item) =>
+                item.nombre.toLowerCase().contains(query.toLowerCase()) ||
+                item.idsexo.contains(query),
+          )
+          .toList();
     });
   }
 
@@ -268,42 +268,39 @@ class _SexoPageState extends State<SexoPage> {
         ),
         // Lista de registros
         Expanded(
-          child:
-              _isLoading
-                  ? Center(
-                    child: CircularProgressIndicator(),
-                  ) // Indicador de carga
-                  : _filteredSexoList.isEmpty
-                  ? Center(child: Text("No hay datos de Sexo disponibles"))
-                  : ListView.builder(
-                    itemCount: _filteredSexoList.length,
-                    itemBuilder: (context, index) {
-                      final sexo = _filteredSexoList[index];
-                      return Card(
-                        margin: EdgeInsets.symmetric(
-                          horizontal: 8.0,
-                          vertical: 4.0,
+          child: _isLoading
+              ? Center(child: CircularProgressIndicator()) // Indicador de carga
+              : _filteredSexoList.isEmpty
+              ? Center(child: Text("No hay datos de Sexo disponibles"))
+              : ListView.builder(
+                  itemCount: _filteredSexoList.length,
+                  itemBuilder: (context, index) {
+                    final sexo = _filteredSexoList[index];
+                    return Card(
+                      margin: EdgeInsets.symmetric(
+                        horizontal: 8.0,
+                        vertical: 4.0,
+                      ),
+                      elevation: 2.0,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                      ),
+                      child: ListTile(
+                        leading: Icon(Icons.people, color: Colors.blueAccent),
+                        title: Text(
+                          sexo.nombre,
+                          style: TextStyle(fontWeight: FontWeight.bold),
                         ),
-                        elevation: 2.0,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10.0),
-                        ),
-                        child: ListTile(
-                          leading: Icon(Icons.people, color: Colors.blueAccent),
-                          title: Text(
-                            sexo.nombre,
-                            style: TextStyle(fontWeight: FontWeight.bold),
-                          ),
-                          subtitle: Text("ID: ${sexo.idsexo}"),
-                          trailing: Icon(Icons.arrow_forward_ios, size: 16.0),
-                          onTap: () {
-                            // Acción al hacer tap en un elemento de sexo
-                            print('Sexo seleccionado: ${sexo.nombre}');
-                          },
-                        ),
-                      );
-                    },
-                  ),
+                        subtitle: Text("ID: ${sexo.idsexo}"),
+                        trailing: Icon(Icons.arrow_forward_ios, size: 16.0),
+                        onTap: () {
+                          // Acción al hacer tap en un elemento de sexo
+                          print('Sexo seleccionado: ${sexo.nombre}');
+                        },
+                      ),
+                    );
+                  },
+                ),
         ),
       ],
     );
@@ -337,7 +334,7 @@ class _TelefonoPageState extends State<TelefonoPage> {
     try {
       final response = await http.get(
         Uri.parse(
-          'https://educaysoft.org/whatsapp6a/app/controllers/TelefonoController.php?action=api',
+          'https://educaysoft.org/microsoft6a/app/controllers/TelefonoController.php?action=api',
         ),
       );
       if (response.statusCode == 200) {
@@ -364,14 +361,13 @@ class _TelefonoPageState extends State<TelefonoPage> {
   void _filterSearch(String query) {
     setState(() {
       _searchText = query;
-      _filteredTelefonoList =
-          _telefonoList
-              .where(
-                (item) =>
-                    item.numero.toLowerCase().contains(query.toLowerCase()) ||
-                    item.idtelefono.contains(query),
-              )
-              .toList();
+      _filteredTelefonoList = _telefonoList
+          .where(
+            (item) =>
+                item.numero.toLowerCase().contains(query.toLowerCase()) ||
+                item.idtelefono.contains(query),
+          )
+          .toList();
     });
   }
 
@@ -396,45 +392,42 @@ class _TelefonoPageState extends State<TelefonoPage> {
         ),
         // Lista de registros
         Expanded(
-          child:
-              _isLoading
-                  ? Center(
-                    child: CircularProgressIndicator(),
-                  ) // Indicador de carga
-                  : _filteredTelefonoList.isEmpty
-                  ? Center(child: Text("No hay datos de Telefono disponibles"))
-                  : ListView.builder(
-                    itemCount: _filteredTelefonoList.length,
-                    itemBuilder: (context, index) {
-                      final telefono = _filteredTelefonoList[index];
-                      return Card(
-                        margin: EdgeInsets.symmetric(
-                          horizontal: 8.0,
-                          vertical: 4.0,
+          child: _isLoading
+              ? Center(child: CircularProgressIndicator()) // Indicador de carga
+              : _filteredTelefonoList.isEmpty
+              ? Center(child: Text("No hay datos de Telefono disponibles"))
+              : ListView.builder(
+                  itemCount: _filteredTelefonoList.length,
+                  itemBuilder: (context, index) {
+                    final telefono = _filteredTelefonoList[index];
+                    return Card(
+                      margin: EdgeInsets.symmetric(
+                        horizontal: 8.0,
+                        vertical: 4.0,
+                      ),
+                      elevation: 2.0,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                      ),
+                      child: ListTile(
+                        leading: Icon(
+                          Icons.phone,
+                          color: Colors.blueAccent,
+                        ), // Icono cambiado
+                        title: Text(
+                          telefono.numero,
+                          style: TextStyle(fontWeight: FontWeight.bold),
                         ),
-                        elevation: 2.0,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10.0),
-                        ),
-                        child: ListTile(
-                          leading: Icon(
-                            Icons.phone,
-                            color: Colors.blueAccent,
-                          ), // Icono cambiado
-                          title: Text(
-                            telefono.numero,
-                            style: TextStyle(fontWeight: FontWeight.bold),
-                          ),
-                          subtitle: Text("ID: ${telefono.idtelefono}"),
-                          trailing: Icon(Icons.arrow_forward_ios, size: 16.0),
-                          onTap: () {
-                            // Acción al hacer tap en un elemento de telefono
-                            print('Telefono seleccionado: ${telefono.numero}');
-                          },
-                        ),
-                      );
-                    },
-                  ),
+                        subtitle: Text("ID: ${telefono.idtelefono}"),
+                        trailing: Icon(Icons.arrow_forward_ios, size: 16.0),
+                        onTap: () {
+                          // Acción al hacer tap en un elemento de telefono
+                          print('Telefono seleccionado: ${telefono.numero}');
+                        },
+                      ),
+                    );
+                  },
+                ),
         ),
       ],
     );
@@ -468,14 +461,15 @@ class _EstadocivilPageState extends State<EstadocivilPage> {
     try {
       final response = await http.get(
         Uri.parse(
-          'https://educaysoft.org/whatsapp6a/app/controllers/EstadocivilController.php?action=api',
+          'https://educaysoft.org/microsoft6a/app/controllers/EstadocivilController.php?action=api',
         ),
       );
       if (response.statusCode == 200) {
         final List<dynamic> data = json.decode(response.body);
         setState(() {
-          _estadocivilList =
-              data.map((item) => Estadocivil.fromJson(item)).toList();
+          _estadocivilList = data
+              .map((item) => Estadocivil.fromJson(item))
+              .toList();
           _filteredEstadocivilList = _estadocivilList;
         });
       } else {
@@ -496,14 +490,13 @@ class _EstadocivilPageState extends State<EstadocivilPage> {
   void _filterSearch(String query) {
     setState(() {
       _searchText = query;
-      _filteredEstadocivilList =
-          _estadocivilList
-              .where(
-                (item) =>
-                    item.nombre.toLowerCase().contains(query.toLowerCase()) ||
-                    item.idestadocivil.contains(query),
-              )
-              .toList();
+      _filteredEstadocivilList = _estadocivilList
+          .where(
+            (item) =>
+                item.nombre.toLowerCase().contains(query.toLowerCase()) ||
+                item.idestadocivil.contains(query),
+          )
+          .toList();
     });
   }
 
@@ -528,49 +521,44 @@ class _EstadocivilPageState extends State<EstadocivilPage> {
         ),
         // Lista de registros
         Expanded(
-          child:
-              _isLoading
-                  ? Center(
-                    child: CircularProgressIndicator(),
-                  ) // Indicador de carga
-                  : _filteredEstadocivilList.isEmpty
-                  ? Center(
-                    child: Text("No hay datos de Estado Civil disponibles"),
-                  )
-                  : ListView.builder(
-                    itemCount: _filteredEstadocivilList.length,
-                    itemBuilder: (context, index) {
-                      final estadocivil = _filteredEstadocivilList[index];
-                      return Card(
-                        margin: EdgeInsets.symmetric(
-                          horizontal: 8.0,
-                          vertical: 4.0,
+          child: _isLoading
+              ? Center(child: CircularProgressIndicator()) // Indicador de carga
+              : _filteredEstadocivilList.isEmpty
+              ? Center(child: Text("No hay datos de Estado Civil disponibles"))
+              : ListView.builder(
+                  itemCount: _filteredEstadocivilList.length,
+                  itemBuilder: (context, index) {
+                    final estadocivil = _filteredEstadocivilList[index];
+                    return Card(
+                      margin: EdgeInsets.symmetric(
+                        horizontal: 8.0,
+                        vertical: 4.0,
+                      ),
+                      elevation: 2.0,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                      ),
+                      child: ListTile(
+                        leading: Icon(
+                          Icons.favorite,
+                          color: Colors.redAccent,
+                        ), // Icono
+                        title: Text(
+                          estadocivil.nombre,
+                          style: TextStyle(fontWeight: FontWeight.bold),
                         ),
-                        elevation: 2.0,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10.0),
-                        ),
-                        child: ListTile(
-                          leading: Icon(
-                            Icons.favorite,
-                            color: Colors.redAccent,
-                          ), // Icono
-                          title: Text(
-                            estadocivil.nombre,
-                            style: TextStyle(fontWeight: FontWeight.bold),
-                          ),
-                          subtitle: Text("ID: ${estadocivil.idestadocivil}"),
-                          trailing: Icon(Icons.arrow_forward_ios, size: 16.0),
-                          onTap: () {
-                            // Acción al hacer tap en un elemento de estado civil
-                            print(
-                              'Estado Civil seleccionado: ${estadocivil.nombre}',
-                            );
-                          },
-                        ),
-                      );
-                    },
-                  ),
+                        subtitle: Text("ID: ${estadocivil.idestadocivil}"),
+                        trailing: Icon(Icons.arrow_forward_ios, size: 16.0),
+                        onTap: () {
+                          // Acción al hacer tap en un elemento de estado civil
+                          print(
+                            'Estado Civil seleccionado: ${estadocivil.nombre}',
+                          );
+                        },
+                      ),
+                    );
+                  },
+                ),
         ),
       ],
     );
@@ -605,14 +593,15 @@ class _DireccionPageState extends State<DireccionPage> {
       // Replace with your actual API endpoint for Direccion
       final response = await http.get(
         Uri.parse(
-          'https://educaysoft.org/whatsapp6a/app/controllers/DireccionController.php?action=api',
+          'https://educaysoft.org/microsoft6a/app/controllers/DireccionController.php?action=api',
         ),
       );
       if (response.statusCode == 200) {
         final List<dynamic> data = json.decode(response.body);
         setState(() {
-          _direccionList =
-              data.map((item) => Direccion.fromJson(item)).toList();
+          _direccionList = data
+              .map((item) => Direccion.fromJson(item))
+              .toList();
           _filteredDireccionList = _direccionList;
         });
       } else {
@@ -633,22 +622,19 @@ class _DireccionPageState extends State<DireccionPage> {
   void _filterSearch(String query) {
     setState(() {
       _searchText = query;
-      _filteredDireccionList =
-          _direccionList
-              .where(
-                (item) =>
-                    item.calleprincipal.toLowerCase().contains(
-                      query.toLowerCase(),
-                    ) ||
-                    item.callesecundaria.toLowerCase().contains(
-                      query.toLowerCase(),
-                    ) ||
-                    item.numerocasa.toLowerCase().contains(
-                      query.toLowerCase(),
-                    ) ||
-                    item.iddireccion.contains(query),
-              )
-              .toList();
+      _filteredDireccionList = _direccionList
+          .where(
+            (item) =>
+                item.calleprincipal.toLowerCase().contains(
+                  query.toLowerCase(),
+                ) ||
+                item.callesecundaria.toLowerCase().contains(
+                  query.toLowerCase(),
+                ) ||
+                item.numerocasa.toLowerCase().contains(query.toLowerCase()) ||
+                item.iddireccion.contains(query),
+          )
+          .toList();
     });
   }
 
@@ -673,56 +659,50 @@ class _DireccionPageState extends State<DireccionPage> {
         ),
         // Lista de registros
         Expanded(
-          child:
-              _isLoading
-                  ? Center(
-                    child: CircularProgressIndicator(),
-                  ) // Indicador de carga
-                  : _filteredDireccionList.isEmpty
-                  ? Center(child: Text("No hay datos de Dirección disponibles"))
-                  : ListView.builder(
-                    itemCount: _filteredDireccionList.length,
-                    itemBuilder: (context, index) {
-                      final direccion = _filteredDireccionList[index];
-                      return Card(
-                        margin: EdgeInsets.symmetric(
-                          horizontal: 8.0,
-                          vertical: 4.0,
+          child: _isLoading
+              ? Center(child: CircularProgressIndicator()) // Indicador de carga
+              : _filteredDireccionList.isEmpty
+              ? Center(child: Text("No hay datos de Dirección disponibles"))
+              : ListView.builder(
+                  itemCount: _filteredDireccionList.length,
+                  itemBuilder: (context, index) {
+                    final direccion = _filteredDireccionList[index];
+                    return Card(
+                      margin: EdgeInsets.symmetric(
+                        horizontal: 8.0,
+                        vertical: 4.0,
+                      ),
+                      elevation: 2.0,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                      ),
+                      child: ListTile(
+                        leading: Icon(Icons.location_on, color: Colors.orange),
+                        title: Text(
+                          "Calle Principal: ${direccion.calleprincipal}",
+                          style: TextStyle(fontWeight: FontWeight.bold),
                         ),
-                        elevation: 2.0,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10.0),
+                        subtitle: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text("ID: ${direccion.iddireccion}"),
+                            Text(
+                              "Calle Secundaria: ${direccion.callesecundaria}",
+                            ),
+                            Text("Número Casa: ${direccion.numerocasa}"),
+                          ],
                         ),
-                        child: ListTile(
-                          leading: Icon(
-                            Icons.location_on,
-                            color: Colors.orange,
-                          ),
-                          title: Text(
-                            "Calle Principal: ${direccion.calleprincipal}",
-                            style: TextStyle(fontWeight: FontWeight.bold),
-                          ),
-                          subtitle: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text("ID: ${direccion.iddireccion}"),
-                              Text(
-                                "Calle Secundaria: ${direccion.callesecundaria}",
-                              ),
-                              Text("Número Casa: ${direccion.numerocasa}"),
-                            ],
-                          ),
-                          trailing: Icon(Icons.arrow_forward_ios, size: 16.0),
-                          onTap: () {
-                            // Acción al hacer tap en un elemento de direccion
-                            print(
-                              'Dirección seleccionada: ${direccion.calleprincipal}',
-                            );
-                          },
-                        ),
-                      );
-                    },
-                  ),
+                        trailing: Icon(Icons.arrow_forward_ios, size: 16.0),
+                        onTap: () {
+                          // Acción al hacer tap en un elemento de direccion
+                          print(
+                            'Dirección seleccionada: ${direccion.calleprincipal}',
+                          );
+                        },
+                      ),
+                    );
+                  },
+                ),
         ),
       ],
     );
@@ -756,7 +736,7 @@ class _PersonaPageState extends State<PersonaPage> {
     try {
       final response = await http.get(
         Uri.parse(
-          'https://educaysoft.org/whatsapp6a/app/controllers/PersonaController.php?action=api',
+          'https://educaysoft.org/microsoft6a/app/controllers/PersonaController.php?action=api',
         ),
       );
       if (response.statusCode == 200) {
@@ -783,17 +763,14 @@ class _PersonaPageState extends State<PersonaPage> {
   void _filterSearch(String query) {
     setState(() {
       _searchText = query;
-      _filteredPersonaList =
-          _personaList
-              .where(
-                (item) =>
-                    item.nombres.toLowerCase().contains(query.toLowerCase()) ||
-                    item.apellidos.toLowerCase().contains(
-                      query.toLowerCase(),
-                    ) ||
-                    item.fechanacimiento.contains(query),
-              )
-              .toList();
+      _filteredPersonaList = _personaList
+          .where(
+            (item) =>
+                item.nombres.toLowerCase().contains(query.toLowerCase()) ||
+                item.apellidos.toLowerCase().contains(query.toLowerCase()) ||
+                item.fechanacimiento.contains(query),
+          )
+          .toList();
     });
   }
 
@@ -818,56 +795,53 @@ class _PersonaPageState extends State<PersonaPage> {
         ),
         // Lista de registros
         Expanded(
-          child:
-              _isLoading
-                  ? Center(
-                    child: CircularProgressIndicator(),
-                  ) // Indicador de carga
-                  : _filteredPersonaList.isEmpty
-                  ? Center(child: Text("No hay datos de Persona disponibles"))
-                  : ListView.builder(
-                    itemCount: _filteredPersonaList.length,
-                    itemBuilder: (context, index) {
-                      final persona = _filteredPersonaList[index];
-                      return Card(
-                        margin: EdgeInsets.symmetric(
-                          horizontal: 8.0,
-                          vertical: 4.0,
+          child: _isLoading
+              ? Center(child: CircularProgressIndicator()) // Indicador de carga
+              : _filteredPersonaList.isEmpty
+              ? Center(child: Text("No hay datos de Persona disponibles"))
+              : ListView.builder(
+                  itemCount: _filteredPersonaList.length,
+                  itemBuilder: (context, index) {
+                    final persona = _filteredPersonaList[index];
+                    return Card(
+                      margin: EdgeInsets.symmetric(
+                        horizontal: 8.0,
+                        vertical: 4.0,
+                      ),
+                      elevation: 2.0,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                      ),
+                      child: ListTile(
+                        leading: Icon(Icons.person, color: Colors.green),
+                        title: Text(
+                          "${persona.nombres} ${persona.apellidos}",
+                          style: TextStyle(fontWeight: FontWeight.bold),
                         ),
-                        elevation: 2.0,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10.0),
+                        subtitle: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "ID: ${persona.idpersona}",
+                            ), // Agregado ID para claridad
+                            Text(
+                              "Fecha Nacimiento: ${persona.fechanacimiento}",
+                            ),
+                            Text("Sexo: ${persona.elsexo}"),
+                            Text("Estado Civil: ${persona.elestadocivil}"),
+                          ],
                         ),
-                        child: ListTile(
-                          leading: Icon(Icons.person, color: Colors.green),
-                          title: Text(
-                            "${persona.nombres} ${persona.apellidos}",
-                            style: TextStyle(fontWeight: FontWeight.bold),
-                          ),
-                          subtitle: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                "ID: ${persona.idpersona}",
-                              ), // Agregado ID para claridad
-                              Text(
-                                "Fecha Nacimiento: ${persona.fechanacimiento}",
-                              ),
-                              Text("Sexo: ${persona.elsexo}"),
-                              Text("Estado Civil: ${persona.elestadocivil}"),
-                            ],
-                          ),
-                          trailing: Icon(Icons.arrow_forward_ios, size: 16.0),
-                          onTap: () {
-                            // Acción al hacer tap en un elemento de persona
-                            print(
-                              'Persona seleccionada: ${persona.nombres} ${persona.apellidos}',
-                            );
-                          },
-                        ),
-                      );
-                    },
-                  ),
+                        trailing: Icon(Icons.arrow_forward_ios, size: 16.0),
+                        onTap: () {
+                          // Acción al hacer tap en un elemento de persona
+                          print(
+                            'Persona seleccionada: ${persona.nombres} ${persona.apellidos}',
+                          );
+                        },
+                      ),
+                    );
+                  },
+                ),
         ),
       ],
     );
