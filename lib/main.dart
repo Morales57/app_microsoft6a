@@ -150,7 +150,7 @@ class Direccion {
   }
 }
 
-// Modelo para los datos de Persona
+// Modelo para los datos de personas
 class Persona {
   final String idpersona;
   final String nombres;
