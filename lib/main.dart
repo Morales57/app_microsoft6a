@@ -52,7 +52,7 @@ class _MainScreenState extends State<MainScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("MICROSOFT6A - Registro"),
+        title: Text("Microsoft6A - Registro"),
       ), // Título de la AppBar
       body: _pages[_selectedIndex], // Muestra la página seleccionada
       bottomNavigationBar: BottomNavigationBar(
